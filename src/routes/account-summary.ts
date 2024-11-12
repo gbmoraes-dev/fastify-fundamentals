@@ -18,7 +18,7 @@ export function accountSummary(app: FastifyInstance) {
 				.sum('amount', { as: 'amount' })
 				.first()
 
-			return summary
+			return { summary }
 		},
 	)
 }
