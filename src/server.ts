@@ -1,5 +1,7 @@
 import fastify from 'fastify'
 
+import cookie from '@fastify/cookie'
+
 import { env } from './env'
 
 import {
@@ -10,6 +12,8 @@ import {
 } from './routes'
 
 const app = fastify()
+
+app.register(cookie)
 
 app
 	.register(createTransaction)
