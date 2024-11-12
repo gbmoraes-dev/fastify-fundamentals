@@ -2,11 +2,11 @@ import fastify from 'fastify'
 
 import { env } from './env'
 
+import { createTransaction } from './routes'
+
 const app = fastify()
 
-app.get('/', async () => {
-	return 'Hello World'
-})
+app.register(createTransaction)
 
 app
 	.listen({
