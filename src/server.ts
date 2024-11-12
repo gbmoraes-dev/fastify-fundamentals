@@ -3,6 +3,7 @@ import fastify from 'fastify'
 import { env } from './env'
 
 import {
+	accountSummary,
 	createTransaction,
 	getTransactionById,
 	listTransactions,
@@ -14,6 +15,7 @@ app
 	.register(createTransaction)
 	.register(listTransactions)
 	.register(getTransactionById)
+	.register(accountSummary)
 
 app
 	.listen({
