@@ -2,11 +2,11 @@ import fastify from 'fastify'
 
 import { env } from './env'
 
-import { createTransaction } from './routes'
+import { createTransaction, listTransactions } from './routes'
 
 const app = fastify()
 
-app.register(createTransaction)
+app.register(createTransaction).register(listTransactions)
 
 app
 	.listen({
