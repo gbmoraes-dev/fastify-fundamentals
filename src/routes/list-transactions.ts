@@ -2,10 +2,22 @@ import type { FastifyInstance } from 'fastify'
 
 import { knex } from '../database'
 
-export function listTransactions(app: FastifyInstance) {
-	app.get('/transactions', async () => {
-		const transactions = await knex('transactions').select()
+import { checkSessionIdExists } from '../middlewares/check-session-id-exists'
 
-		return { transactions }
-	})
+export function listTransactions(app: FastifyInstance) {
+	app.get(
+		'/transactions',
+		{
+			preHandler: [checkSessionIdExists],
+		},
+		async (request) => {
+			const { sessionId } = request.cookies
+
+			const transactions = await knex('transactions')
+				.where('session_id', sessionId)
+				.select()
+
+			return { transactions }
+		},
+	)
 }
