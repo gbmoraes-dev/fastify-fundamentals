@@ -1,5 +1,7 @@
 import fastify from 'fastify'
 
+import { env } from './env'
+
 const app = fastify()
 
 app.get('/', async () => {
@@ -8,8 +10,8 @@ app.get('/', async () => {
 
 app
 	.listen({
-		port: 3333,
+		port: env.PORT,
 	})
 	.then(() => {
-		console.log('🚀 HTTP server is running on port 3333')
+		console.log(`🚀 HTTP server is running on port ${env.PORT}`)
 	})
